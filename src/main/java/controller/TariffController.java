@@ -40,7 +40,7 @@ public class TariffController {
         model.addAttribute("tariff", new Tariff());
         model.addAttribute("allTariffs", this.tariffService.getAll());
 
-        return "projects";
+        return "tariffs";
     }
 
     @RequestMapping(value = "/tariffs/add", method = RequestMethod.POST)
@@ -82,7 +82,7 @@ public class TariffController {
 
     @RequestMapping("/tariffs/edit/{id}")
     public String editTariff(@PathVariable("id") Long id, Model model){
-        model.addAttribute("tariffs", this.tariffService.get(id));
+        model.addAttribute("tariff", this.tariffService.get(id));
         model.addAttribute("allTariffs", this.tariffService.getAll());
 
         return "tariffs";

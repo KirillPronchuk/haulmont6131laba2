@@ -39,7 +39,7 @@ public class CustomerController {
         model.addAttribute("customers", new Customer());
         model.addAttribute("allCustomers", this.customerService.getAll());
 
-        return "projects";
+        return "customers";
     }
 
     @RequestMapping(value = "/customers/add", method = RequestMethod.POST)
@@ -81,7 +81,7 @@ public class CustomerController {
 
     @RequestMapping("/customers/edit/{id}")
     public String editCustomer(@PathVariable("id") Long id, Model model){
-        model.addAttribute("customers", this.customerService.get(id));
+        model.addAttribute("customer", this.customerService.get(id));
         model.addAttribute("allCustomers", this.customerService.getAll());
 
         return "customers";

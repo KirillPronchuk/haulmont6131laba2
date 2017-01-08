@@ -40,7 +40,7 @@ public class OrderController {
         model.addAttribute("orders", new Order());
         model.addAttribute("allOrders", this.orderService.getAll());
 
-        return "projects";
+        return "orders";
     }
 
     @RequestMapping(value = "/orders/add", method = RequestMethod.POST)
@@ -82,7 +82,7 @@ public class OrderController {
 
     @RequestMapping("/orders/edit/{id}")
     public String editOrder(@PathVariable("id") Long id, Model model){
-        model.addAttribute("orders", this.orderService.get(id));
+        model.addAttribute("order", this.orderService.get(id));
         model.addAttribute("allOrders", this.orderService.getAll());
 
         return "orders";

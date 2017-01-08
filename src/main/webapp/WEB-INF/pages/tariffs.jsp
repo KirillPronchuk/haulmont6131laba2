@@ -6,7 +6,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Страница проектов</title>
+    <title>Страница тарифов</title>
     <style type="text/css">
         .error {
             color: #ff0000;
@@ -49,20 +49,20 @@
     </style>
 </head>
 <body>
-<a href="/Manager/">Назад в главное меню</a>
+<a href="/Laba2/">Назад в главное меню</a>
 
 <br/>
 <br/>
 
-<h1>Список проектов</h1>
+<h1>Список тарифов</h1>
 
 <c:if test="${!empty allTariffs}">
     <table class="tg">
         <tr>
             <th width="80">ID</th>
             <th width="120">Название</th>
-            <th width="120">Описание</th>
-            <th width="120">Статус</th>
+            <th width="120">Скорость</th>
+            <th width="120">Цена</th>
             <th width="60">Редактировать</th>
             <th width="60">Удалить</th>
         </tr>
@@ -80,7 +80,7 @@
 </c:if>
 
 
-<h1>Добавить проект</h1>
+<h1>Добавить тариф</h1>
 
 <c:url var="addAction" value="/tariffs/add"/>
 
