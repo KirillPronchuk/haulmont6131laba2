@@ -92,37 +92,37 @@
 
 <h1>Список тарифов</h1>
 
-<c:if test="${!empty allTariffs}">
+<c:if test="${!empty allCustomers}">
     <table class="tg">
         <tr>
             <th width="80">ID</th>
-            <th width="120">Название</th>
-            <th width="120">Скорость</th>
-            <th width="120">Цена</th>
+            <th width="120">Имя</th>
+            <th width="120">елефонный номер</th>
+            <th width="120">Адрес</th>
             <th width="60">Редактировать</th>
             <th width="60">Удалить</th>
         </tr>
-        <c:forEach items="${allTariffs}" var="tariff">
+        <c:forEach items="${allCustomers}" var="customer">
             <tr>
-                <td>${tariff.id}</td>
-                <td>${tariff.name}</td>
-                <td>${tariff.speed}</td>
-                <td>${tariff.cost}</td>
-                <td><a href="<c:url value='/tariffs/edit/${tariff.id}'/>">Редактировать</a></td>
-                <td><a href="<c:url value='/tariffs/remove/${tariff.id}'/>">Удалить</a></td>
+                <td>${customer.id}</td>
+                <td>${customer.name}</td>
+                <td>${customer.phonenum}</td>
+                <td>${customer.adress}</td>
+                <td><a href="<c:url value='/customers/edit/${customer.id}'/>">Редактировать</a></td>
+                <td><a href="<c:url value='/customers/remove/${customer.id}'/>">Удалить</a></td>
             </tr>
         </c:forEach>
     </table>
 </c:if>
 
 
-<h1>Добавить тариф</h1>
+<h1>Добавить пользователя</h1>
 
-<c:url var="addAction" value="/tariffs/add"/>
+<c:url var="addAction" value="/customers/add"/>
 
-<form:form action="${addAction}" commandName="tariff">
+<form:form action="${addAction}" commandName="customer">
     <table>
-        <c:if test="${!empty tariff.id}">
+        <c:if test="${!empty customer.id}">
             <tr>
                 <td>
                     <form:label path="id">
@@ -138,7 +138,7 @@
         <tr>
             <td>
                 <form:label path="name">
-                    <spring:message text="Название"/>
+                    <spring:message text="Имя клиента"/>
                 </form:label>
             </td>
             <td>
@@ -150,49 +150,47 @@
         </tr>
         <tr>
             <td>
-                <form:label path="speed">
-                    <spring:message text="Скорость"/>
+                <form:label path="phonenum">
+                    <spring:message text="Телефонный номер"/>
                 </form:label>
             </td>
             <td>
-                <form:input path="speed"/>
+                <form:input path="phonenum" type="text"/>
             </td>
             <td>
-                <form:errors path="speed" cssClass="error" />
+                <form:errors path="phonenum" cssClass="error" />
             </td>
         </tr>
         <tr>
             <td>
-                <form:label path="cost">
-                    <spring:message text="Цена"/>
+                <form:label path="adress">
+                    <spring:message text="Адрес"/>
                 </form:label>
             </td>
             <td>
-                <form:input path="cost"/>
+                <form:input path="adress" type="text"/>
             </td>
             <td>
-                <form:errors path="cost" cssClass="error" />
+                <form:errors path="adress" cssClass="error" />
             </td>
         </tr>
         <tr>
-            <c:if test="${!empty tariff.id}">
+            <c:if test="${!empty customer.id}">
                 <td>
                     <input type="submit"
-                           value="<spring:message text="Редактировать тариф"/>"/>
+                           value="<spring:message text="Редактировать пользователя"/>"/>
                 </td>
                 <td>
-                    <form action="/tariffs">
+                    <form action="/customers">
                         <input type="submit" value="<spring:message text="Вернуться назад"/>"
                                name="Submit" id="frm1_submit" />
                     </form>
-                    <%--<a href="<c:url value='/tariffs'/>"><input type="reset"--%>
-                           <%--value="<spring:message text="Вернуться назад"/>"/></a>--%>
                 </td>
             </c:if>
-            <c:if test="${empty tariff.id}">
+            <c:if test="${empty customer.id}">
                 <td colspan="2">
                     <input type="submit"
-                           value="<spring:message text="Добавить тариф"/>"/>
+                           value="<spring:message text="Добавить пользователя"/>"/>
                 </td>
             </c:if>
         </tr>

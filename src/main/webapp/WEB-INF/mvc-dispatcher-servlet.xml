@@ -34,6 +34,14 @@
         <property name="abstractDAO" ref="tariffDAO"/>
     </bean>
 
+    <bean id="customerService1" class="service.CustomerService">
+        <property name="abstractDAO" ref="customerDAO"/>
+    </bean>
+
+    <bean id="tariffService1" class="service.TariffService">
+        <property name="abstractDAO" ref="tariffDAO"/>
+    </bean>
+
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
 

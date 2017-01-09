@@ -1,6 +1,8 @@
 package controller;
 
+import model.Customer;
 import model.Order;
+import model.Tariff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -12,12 +14,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
+import service.CustomerService;
 import service.OrderService;
+import service.TariffService;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -27,6 +33,8 @@ import java.util.Set;
 public class OrderController {
 
     private OrderService orderService;
+    private CustomerService customerService;
+    private TariffService tariffService;
 
     @Autowired
     @Qualifier(value = "orderService")
@@ -34,11 +42,33 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    @Autowired
+    @Qualifier(value = "customerService1")
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
+    @Autowired
+    @Qualifier(value = "tariffService1")
+    public void setTariffService(TariffService tariffService) {
+        this.tariffService = tariffService;
+    }
 
     @RequestMapping(value = "orders", method = RequestMethod.GET)
     public String allOrders(Model model){
         model.addAttribute("orders", new Order());
         model.addAttribute("allOrders", this.orderService.getAll());
+        Map<Long,String> custnums = new LinkedHashMap<Long,String>();
+        for (Customer cust: customerService.getAll()) {
+            custnums.put(cust.getId(),cust.toString());
+        }
+        model.addAttribute("custnumlist", custnums);
+
+        Map<Long,String> tarnums = new LinkedHashMap<Long,String>();
+        for (Tariff tar: tariffService.getAll()) {
+            tarnums.put(tar.getId(),tar.toString());
+        }
+        model.addAttribute("tarnumlist", tarnums);
 
         return "orders";
     }
